@@ -18,6 +18,8 @@ mkdir $BACKUP_DIR
 mysqldump -u "$USER" -p"$PASSWORD" "$DATABASE" > "$BACKUP_FILE"
 echo "[*] Creating TAR archive..."
 tar -czvf "$TAR_NAME" "$BACKUP_FILE"
+rm -rf "$BACKUP_DIR/${DATABASE}_backup_$DATE.sql"
+rm -rf "mysql_backup_$TIMESTAMP.tar.gz"
 # Check if the backup was successful
 if [ $? -eq 0 ]; then
   echo "✅ Backup successful: $BACKUP_FILE"
